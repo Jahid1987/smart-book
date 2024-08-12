@@ -1,8 +1,9 @@
-import { BookOpenIcon} from '@heroicons/react/24/outline';
+
+import { BookOpenIcon } from '@heroicons/react/24/outline';
 import { lusitana } from './fonts';
 
 
-export default function AcmeLogo() {
+export default function SmartBookLogo() {
   return (
     <div
       className={`${lusitana.className} flex flex-row items-center leading-none text-white`}
