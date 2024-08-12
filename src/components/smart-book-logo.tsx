@@ -1,6 +1,7 @@
 
+import { lusitana } from '@/ui/fonts';
 import { BookOpenIcon } from '@heroicons/react/24/outline';
-import { lusitana } from './fonts';
+
 
 
 export default function SmartBookLogo() {

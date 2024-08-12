@@ -1,8 +1,9 @@
 import SideNav from "@/components/dashboard/sidenav";
-import { inter } from "@/components/fonts";
+
 import type { Metadata } from "next";
 
 import "../../globals.css";
+import { inter } from "@/ui/fonts";
 
 
 export const metadata: Metadata = {

@@ -1,6 +1,7 @@
 
-import { lusitana } from "@/components/fonts";
+
 import SmartBookLogo from "@/components/smart-book-logo";
+import { lusitana } from "@/ui/fonts";
 import { ArrowRightIcon, } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
