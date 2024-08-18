@@ -10,13 +10,13 @@ import { lusitana } from "@/ui/fonts";
  
 export default async function Page() {
 
-  const {getDocs} = CRUD('invoices')
+  const {getDocs} = CRUD('revenues')
   const docs = await getDocs()
+
   const revenue: Revenue[] = docs.map(doc => ({
     month: doc.month as string,
     revenue: doc.revenue as number,
-}));
-  console.log(revenue)
+  }));
 
   
   return (
