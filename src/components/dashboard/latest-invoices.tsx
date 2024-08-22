@@ -9,7 +9,7 @@ export default async function LatestInvoices({
   latestInvoices: LatestInvoice[];
 }) {
 
-  
+  console.log(latestInvoices[0]._id.toString())
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -22,7 +22,7 @@ export default async function LatestInvoices({
           {latestInvoices.map((invoice, i) => {
             return (
               <div
-                key={invoice.id}
+                key={invoice._id.toString()}
                 className={clsx(
                   'flex flex-row items-center justify-between py-4',
                   {

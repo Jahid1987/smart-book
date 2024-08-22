@@ -9,5 +9,6 @@ export async function getLatestInvoices(){
     };
 
     const invoices = await db.collection<LatestInvoice>('invoices').find({}, options).limit(5).toArray();
+    
     return invoices
 }

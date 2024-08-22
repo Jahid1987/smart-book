@@ -32,7 +32,7 @@ export type User = {
   };
   
   export type LatestInvoice = {
-    id: string;
+    _id: string;
     name: string;
     image: string;
     email: string;
