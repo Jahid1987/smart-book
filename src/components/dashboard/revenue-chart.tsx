@@ -15,10 +15,14 @@ export default async function RevenueChart() {
   // NOTE: Uncomment this code in Chapter 7
   const db = dbConnect()
   const docs = await db.collection('revenues').find().toArray();
-    const revenue: Revenue[] = docs.map(doc => ({
+    
+  const revenue: Revenue[] = docs.map(doc => ({
       month: doc.month as string,
       revenue: doc.revenue as number,
     }));
+
+    console.log('consoling revenue', revenue)
+
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {
