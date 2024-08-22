@@ -1,14 +1,15 @@
-import { LatestInvoice } from '@/lib/definitions';
+
+import { getLatestInvoices } from '@/lib/latest-invoices';
 import { lusitana } from '@/ui/fonts';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
-export default async function LatestInvoices({
-  latestInvoices,
-}: {
-  latestInvoices: LatestInvoice[];
-}) {
 
+export default async function LatestInvoices() {
+
+    // latest invoices
+    const latestInvoices = await getLatestInvoices();
+  
   console.log(latestInvoices[0]._id.toString())
   return (
     <div className="flex w-full flex-col md:col-span-4">

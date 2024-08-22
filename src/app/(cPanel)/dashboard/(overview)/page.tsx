@@ -5,12 +5,13 @@
 import { Card } from "@/components/dashboard/Card";
 import LatestInvoices from "@/components/dashboard/latest-invoices";
 import RevenueChart from "@/components/dashboard/revenue-chart";
+import { RevenueChartSkeleton } from "@/components/skeletons";
 import { CRUD } from "@/lib/crud-functions";
 import { Revenue } from "@/lib/definitions";
 import { getTotalCount } from "@/lib/get-total-count";
-import { getLatestInvoices } from "@/lib/latest-invoices";
 
 import { lusitana } from "@/ui/fonts";
+import { Suspense } from "react";
 
 export default async function Page() {
 
@@ -22,22 +23,21 @@ export default async function Page() {
     revenue: doc.revenue as number,
   }));
 
-  // latest invoices
-  const latestInvoices = await getLatestInvoices();
-  
+
   // card information
   const totalPaidInvoices = await getTotalCount('invoices', {status: 'collected'})
   const totalPendingInvoices = await getTotalCount('invoices', {status: 'pending'})
   const numberOfInvoices = await getTotalCount('invoices')
   const numberOfCustomers = await getTotalCount('users')
   
-  const cardData = await Promise.all([
-    getTotalCount('invoices', {status: 'collected'}),
-    getTotalCount('invoices', {status: 'pending'}),
-    getTotalCount('invoices'),
-    getTotalCount('users'),
-  ])
-  console.log(cardData)
+  // const cardData = await Promise.all([
+  //   getTotalCount('invoices', {status: 'collected'}),
+  //   getTotalCount('invoices', {status: 'pending'}),
+  //   getTotalCount('invoices'),
+  //   getTotalCount('users'),
+  // ])
+  // console.log(cardData)
+
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -55,7 +55,7 @@ export default async function Page() {
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue}  />
-        <LatestInvoices latestInvoices={latestInvoices} />
+        <Suspense fallback={<RevenueChartSkeleton />}><LatestInvoices /></Suspense>
       </div>
     </main>
   );
