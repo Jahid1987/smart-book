@@ -1,3 +1,4 @@
+import { dbConnect } from '@/db/dbConnect';
 import { Revenue } from '@/lib/definitions';
 import { generateYAxis } from '@/lib/utils';
 import { lusitana } from '@/ui/fonts';
@@ -9,14 +10,15 @@ import { CalendarIcon } from '@heroicons/react/24/outline';
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-export default async function RevenueChart({
-  revenue,
-}: {
-  revenue: Revenue[];
-}) {
+export default async function RevenueChart() {
   const chartHeight = 350;
   // NOTE: Uncomment this code in Chapter 7
-
+  const db = dbConnect()
+  const docs = await db.collection('revenues').find().toArray();
+    const revenue: Revenue[] = docs.map(doc => ({
+      month: doc.month as string,
+      revenue: doc.revenue as number,
+    }));
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {

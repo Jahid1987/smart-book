@@ -5,24 +5,14 @@
 import { Card } from "@/components/dashboard/Card";
 import LatestInvoices from "@/components/dashboard/latest-invoices";
 import RevenueChart from "@/components/dashboard/revenue-chart";
-import { RevenueChartSkeleton } from "@/components/skeletons";
-import { CRUD } from "@/lib/crud-functions";
-import { Revenue } from "@/lib/definitions";
+import { LatestInvoicesSkeleton, RevenueChartSkeleton } from "@/components/skeletons";
+
 import { getTotalCount } from "@/lib/get-total-count";
 
 import { lusitana } from "@/ui/fonts";
 import { Suspense } from "react";
 
 export default async function Page() {
-
-  const {getDocs} = CRUD('revenues')
-  const docs = await getDocs()
-
-  const revenue: Revenue[] = docs.map(doc => ({
-    month: doc.month as string,
-    revenue: doc.revenue as number,
-  }));
-
 
   // card information
   const totalPaidInvoices = await getTotalCount('invoices', {status: 'collected'})
@@ -54,8 +44,8 @@ export default async function Page() {
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue}  />
-        <Suspense fallback={<RevenueChartSkeleton />}><LatestInvoices /></Suspense>
+        <Suspense fallback={<RevenueChartSkeleton />}><RevenueChart /></Suspense>
+        <Suspense fallback={<LatestInvoicesSkeleton />}><LatestInvoices /></Suspense>
       </div>
     </main>
   );

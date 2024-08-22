@@ -1,4 +1,4 @@
-
+'use server'
 import { getLatestInvoices } from '@/lib/latest-invoices';
 import { lusitana } from '@/ui/fonts';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
@@ -10,7 +10,6 @@ export default async function LatestInvoices() {
     // latest invoices
     const latestInvoices = await getLatestInvoices();
   
-  console.log(latestInvoices[0]._id.toString())
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
