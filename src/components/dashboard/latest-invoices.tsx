@@ -2,11 +2,13 @@ import { LatestInvoice } from '@/lib/definitions';
 import { lusitana } from '@/ui/fonts';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from 'react';
 export default async function LatestInvoices({
   latestInvoices,
 }: {
-  latestInvoices: LatestInvoice[];
+  latestInvoices: any;
 }) {
 
   
@@ -19,7 +21,7 @@ export default async function LatestInvoices({
         {/* NOTE: Uncomment this code in Chapter 7 */}
 
         <div className="bg-white px-6">
-          {latestInvoices.map((invoice, i) => {
+          {latestInvoices?.map((invoice: { id: Key | null | undefined; image: string | StaticImport; name: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; email: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; amount: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }, i: number) => {
             return (
               <div
                 key={invoice.id}
