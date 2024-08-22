@@ -17,7 +17,7 @@ export default async function RootLayout({
   await dbConnect()
   return (
     <html lang="en">
-      <body  className={`${inter.className} antialiased`}>{children}</body>
+      <body suppressHydrationWarning={true}  className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }

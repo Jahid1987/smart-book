@@ -2,12 +2,13 @@
 // import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 // import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 
+import LatestInvoices from "@/components/dashboard/latest-invoices";
 import RevenueChart from "@/components/dashboard/revenue-chart";
 import { CRUD } from "@/lib/crud-functions";
 import { Revenue } from "@/lib/definitions";
+import { getLatestInvoices } from "@/lib/latest-invoices";
 import { lusitana } from "@/ui/fonts";
 
- 
 export default async function Page() {
 
   const {getDocs} = CRUD('revenues')
@@ -18,7 +19,9 @@ export default async function Page() {
     revenue: doc.revenue as number,
   }));
 
-  
+  // latest invoices
+  const latestInvoices = await getLatestInvoices();
+  console.log(latestInvoices)
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -36,7 +39,7 @@ export default async function Page() {
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue}  />
-        {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
+        <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
   );

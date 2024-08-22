@@ -51,7 +51,7 @@ export function CRUD(collection: string){
     async function getDocs(query?:string){
         try {
             // connect to db
-            const db = await dbConnect()
+            const db = dbConnect()
             // find all docs from the specific collection
             const docs = await db.collection(collection).find().toArray()
             
