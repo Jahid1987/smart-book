@@ -1,4 +1,6 @@
-export function getDocsWithoutObjectIds(docs) {
+import { LatestInvoice } from "@/lib/definitions";
+
+export function getDocsWithoutObjectIds(docs: LatestInvoice[]) {
   console.log(docs)
   const docsModified = docs
     .map((item) => {

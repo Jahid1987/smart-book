@@ -11,7 +11,6 @@ import { getTotalCount } from "@/lib/get-total-count";
 import { getLatestInvoices } from "@/lib/latest-invoices";
 
 import { lusitana } from "@/ui/fonts";
-import { getDocsWithoutObjectIds } from "@/utils/return-withou-id";
 
 export default async function Page() {
 
@@ -24,7 +23,7 @@ export default async function Page() {
   }));
 
   // latest invoices
-  const latestInvoices =  getDocsWithoutObjectIds(await getLatestInvoices());
+  const latestInvoices = await getLatestInvoices();
   
   // card information
   const totalPaidInvoices = await getTotalCount('invoices', {status: 'collected'})
