@@ -21,7 +21,7 @@ export default async function RevenueChart() {
       revenue: doc.revenue as number,
     }));
 
-    console.log('consoling revenue', revenue)
+    // console.log('consoling revenue', revenue)
 
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 

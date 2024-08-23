@@ -14,7 +14,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await dbConnect()
+  dbConnect()
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}  className={`${inter.className} antialiased`}>{children}</body>

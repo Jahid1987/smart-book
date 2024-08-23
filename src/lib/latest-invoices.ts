@@ -1,5 +1,4 @@
 import { dbConnect } from "@/db/dbConnect";
-import { WithId } from "mongodb";
 import { LatestInvoice } from "./definitions";
 
 export async function getLatestInvoices(){
