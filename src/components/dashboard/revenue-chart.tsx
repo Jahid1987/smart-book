@@ -14,12 +14,7 @@ export default async function RevenueChart() {
   const chartHeight = 350;
   // NOTE: Uncomment this code in Chapter 7
   const db = dbConnect()
-  const docs = await db.collection('revenues').find().toArray();
-    
-  const revenue: Revenue[] = docs.map(doc => ({
-      month: doc.month as string,
-      revenue: doc.revenue as number,
-    }));
+  const revenue: Revenue[] = await db.collection('revenues').find().toArray();
 
     // console.log('consoling revenue', revenue)
 
