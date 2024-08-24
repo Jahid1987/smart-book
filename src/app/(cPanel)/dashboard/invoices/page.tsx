@@ -1,11 +1,11 @@
 // import Pagination from '@/app/ui/invoices/pagination';
-import Table from '@/components/invoices/table'
+
 import { Suspense } from 'react';
 import { lusitana } from '@/ui/fonts';
 import { CreateInvoice } from '@/components/invoices/buttons';
 import Search from '@/components/search';
 import { InvoicesTableSkeleton } from '@/components/skeletons';
- 
+ import InvoicesTable from '@/components/invoices/InvoiceTable';
 export default async function Page({searchParams}: {searchParams?:{
   query?: string,
   page?: string
@@ -23,7 +23,7 @@ export default async function Page({searchParams}: {searchParams?:{
         <CreateInvoice />
       </div>
        <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
+        <InvoicesTable query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
         {/* <Pagination totalPages={totalPages} /> */}

@@ -3,10 +3,13 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type User = {
-    id: string;
+    _id: string;
     name: string;
     email: string;
     password: string;
+    image_url: string;
+    role: 'user' | 'admin' | 'student' | 'teacher' | 'guardian';
+    created_at: string
   };
   
   export type Customer = {
@@ -46,14 +49,13 @@ export type User = {
   };
   
   export type InvoicesTable = {
-    id: string;
-    customer_id: string;
+    _id: string;
     name: string;
     email: string;
-    image_url: string;
-    date: string;
+    image: string;
+    createdAt: string;
     amount: number;
-    status: 'pending' | 'paid';
+    status: 'pending' | 'collected';
   };
   
   export type CustomersTableType = {

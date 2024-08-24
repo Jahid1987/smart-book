@@ -1,4 +1,5 @@
 'use server'
+import { LatestInvoice } from '@/lib/definitions';
 import { getLatestInvoices } from '@/lib/latest-invoices';
 import { lusitana } from '@/ui/fonts';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
@@ -8,7 +9,7 @@ import Image from 'next/image';
 export default async function LatestInvoices() {
 
     // latest invoices
-    const latestInvoices = await getLatestInvoices();
+    const latestInvoices: LatestInvoice[] = await getLatestInvoices();
     
   return (
     <div className="flex w-full flex-col md:col-span-4">
@@ -22,7 +23,7 @@ export default async function LatestInvoices() {
           {latestInvoices.map((invoice, i) => {
             return (
               <div
-                key={invoice._id.toString()}
+                key={invoice._id}
                 className={clsx(
                   'flex flex-row items-center justify-between py-4',
                   {

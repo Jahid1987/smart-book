@@ -16,7 +16,7 @@ import {
   
   export default async function CardWrapper() {
       // card information
-  const totalPaidInvoices = await getTotalCount('invoices', {status: 'collected'})
+  const totalPaidInvoices = await getTotalCount('invoices', {status: 'paid'})
   const totalPendingInvoices = await getTotalCount('invoices', {status: 'pending'})
   const numberOfInvoices = await getTotalCount('invoices')
   const numberOfCustomers = await getTotalCount('users')
