@@ -2,25 +2,10 @@
 import { sql } from "@/lib/db_connection";
 import BookSidebar from "@/components/frontend/BookSidebar";
 import { Suspense } from "react";
+import { Chapter } from "@/types/book";
 
-type ContentNode = {
-  id: number;
-  parent_id: number | null;
-  serial: number | string;
-  title: string;
-  node_type: string;
-  importance: string | null;
-  content: string | null;
-  sort_order: number;
-};
 
-type Chapter = {
-  id: number;
-  serial: number | string;
-  title: string;
-  sort_order: number;
-  content_nodes: ContentNode[];
-};
+
 
 // ১. চাইল্ড কম্পোনেন্ট: এখানেই searchParams প্রপস হিসেবে প্রমিস আকারে আসবে এবং Suspense-এর ভেতরে await হবে
 async function BookContentArea({
@@ -71,7 +56,7 @@ async function BookContentArea({
           <div className="space-y-6">
             <div className="flex items-center gap-3 text-sm">
               <span className="uppercase px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md font-mono text-xs font-semibold border border-blue-100">
-                {activeNode.node_type} : {activeNode.serial}
+                {(activeNode as typeof activeNode & { node_type: string }).node_type} : {activeNode.serial}
               </span>
               {activeNode.importance === 'high' && (
                 <span className="flex items-center gap-1 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-md text-xs font-semibold border border-amber-100">
@@ -85,7 +70,7 @@ async function BookContentArea({
             </h1>
 
             <div className="prose max-w-none text-gray-700 whitespace-pre-line leading-relaxed text-base pt-2">
-              {activeNode.content || "এই টপিকের বিস্তারিত পাঠ্য কনটেন্ট এখনো যুক্ত করা হয়নি।"}
+              {(activeNode as typeof activeNode & { content?: string | null }).content || "এই টপিকের বিস্তারিত পাঠ্য কনটেন্ট এখনো যুক্ত করা হয়নি।"}
             </div>
           </div>
         ) : (

@@ -3,23 +3,6 @@ import { sql } from "@/lib/db_connection";
 import { Suspense } from "react";
 import { createBook, createChapter, createContentNode } from "@/features/books/actions";
 
-interface Book {
-  id: number;
-  title: string;
-  class_level: string;
-}
-
-interface MainTopic {
-  id: number;
-  serial: string;
-  title: string;
-}
-
-interface Chapter {
-  id: number;
-  serial: string;
-  title: string;
-}
 
 async function AdminFormsContainer() {
   // ড্রপডাউনে দেখানোর জন্য বিদ্যমান বই, অধ্যায় এবং মেইন টপিকগুলো আনা হচ্ছে
@@ -94,7 +77,7 @@ async function AdminFormsContainer() {
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">বই সিলেক্ট করুন (book_id) *</label>
           <select name="book_id" required className="w-full border rounded px-3 py-2 text-sm bg-white">
-            {books.map((b: Book) => (
+            {books.map((b) => (
               <option key={b.id} value={b.id}>{b.title} ({b.class_level})</option>
             ))}
           </select>
@@ -135,7 +118,7 @@ async function AdminFormsContainer() {
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">অধ্যায় সিলেক্ট করুন (chapter_id) *</label>
           <select name="chapter_id" required className="w-full border rounded px-3 py-2 text-sm bg-white">
-            {chapters.map((c: Chapter) => (
+            {chapters.map((c) => (
               <option key={c.id} value={c.id}>অধ্যায় {c.serial}: {c.title}</option>
             ))}
           </select>
@@ -147,7 +130,7 @@ async function AdminFormsContainer() {
           </label>
           <select name="parent_id" className="w-full border rounded px-3 py-2 text-sm bg-amber-50/50">
             <option value="">-- এটি একটি মেইন টপিক (parent_id = NULL) --</option>
-            {mainTopics.map((t: MainTopic) => (
+            {mainTopics.map((t) => (
               <option key={t.id} value={t.id}>
                 [Subtopic এর জন্য সিলেক্ট করুন] ↳ {t.serial} {t.title}
               </option>
