@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { ArrowLeft, Save, FileText, FolderTree } from 'lucide-react';
+import Link from "next/link";
+import { ArrowLeft, Save, FileText, FolderTree, Monitor } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ bookId: string; chapterId: string }>;
@@ -26,10 +26,13 @@ export default async function NewContentNodePage({ params }: PageProps) {
           <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
             <FolderTree className="w-5 h-5" />
           </div>
-          <h2 className="text-xl font-bold text-slate-900">Add New Topic / Content Node</h2>
+          <h2 className="text-xl font-bold text-slate-900">
+            Add New Topic / Content Node
+          </h2>
         </div>
         <p className="text-sm text-slate-500 mb-6">
-          Create a main topic or subtopic inside this chapter. You can write its content in Markdown format.
+          Create a main topic or subtopic inside this chapter. You can write its
+          content in Markdown format.
         </p>
 
         <form className="space-y-5">
@@ -110,6 +113,30 @@ export default async function NewContentNodePage({ params }: PageProps) {
               placeholder="# টপিকের শিরোনাম এখানে লিখুন...&#10;&#10;কনটেন্ট এবং গণিতের সূত্র এখানে Markdown ফরম্যাটে যোগ করুন।"
               className="w-full font-mono text-xs sm:text-sm px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
+          </div>
+
+          {/* Slide View Integration inside Topic Form */}
+          <div className="bg-indigo-50/50 p-5 rounded-xl border border-indigo-100 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
+                <Monitor className="w-4 h-4 text-indigo-600" />
+                Smart Board Slide Content (Optional)
+              </h3>
+              <span className="text-xs text-indigo-600 font-medium">
+                Auto-synced with Topic
+              </span>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                Slide Key Bullet Points (Comma separated or lines)
+              </label>
+              <textarea
+                rows={3}
+                placeholder="পয়েন্ট ১: মূল সংজ্ঞা&#10;পয়েন্ট ২: প্রয়োজনীয় সূত্র&#10;পয়েন্ট ৩: উদাহরণ"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
           </div>
 
           {/* Action Buttons */}
