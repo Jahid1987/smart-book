@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:push": "node --env-file=.env.local lib/db/migrate.mjs"
+    "db:push": "node --env-file=.env.local db/migrate.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.59.0",

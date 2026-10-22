@@ -1,7 +1,7 @@
 // db/migrate.mjs
 import fs from "fs";
 import path from "path";
-import { sql } from "@/lib/db_connection"; // আপনার ডাটাবেস সংযোগ ফাইল অনুযায়ী পরিবর্তন করুন
+import { sql } from "../lib/db_connection.ts"; // আপনার ডাটাবেস সংযোগ ফাইল অনুযায়ী পরিবর্তন করুন
 
 async function runMigrations() {
   try {
@@ -19,7 +19,7 @@ async function runMigrations() {
     const executedFiles = new Set(executedRows.map((row) => row.filename));
 
     // ৩. আপনার ফোল্ডারের সব .sql ফাইল পড়া (আপনার ফোল্ডার পাথ অনুযায়ী দিন)
-    const dbDir = path.join(process.cwd(), "lib/db");
+    const dbDir = path.join(process.cwd(), "db");
     const files = fs
       .readdirSync(dbDir)
       .filter((file) => file.endsWith(".sql"))
